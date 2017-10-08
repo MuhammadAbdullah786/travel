@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
-class AdminLoginController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.

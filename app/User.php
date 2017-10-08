@@ -42,4 +42,14 @@ class User extends Authenticatable
 
         return false;
     }
+    public function isAgent()
+    {   
+
+        if($this->role->name == 'agent' && $this->is_active == 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
