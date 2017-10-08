@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin', 'AdminLoginController@index', ["middleware"=>"auth"])->name('admin.login');
+Route::get('admin/logout', 'AdminLoginController@logout')->name('admin.logout');
+
+Route::group(['middleware' => 'admin'], function(){
+Route::get('admin/dashboard', 'AdminLoginController@dashboard')->name('admin.dashboard');
+Route::resource('admin/hotels', 'AdminHotelsController',["as"=>"admin"]);
+Route::resource('admin/users', 'AdminUsersController', ["as"=>"admin"]);
+});
