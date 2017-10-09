@@ -86,9 +86,22 @@
 			<div class="side-menu-container">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/admin"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-					<li><a href="{{ route('admin.users.index') }}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
-					<li><a href="{{ route('admin.users.create') }}"><span class="glyphicon glyphicon-user"></span> Create User</a></li>
-					
+					<li class="panel panel-default" id="dropdown">
+						<a data-toggle="collapse" href="#dropdown-user">
+							<span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>
+						</a>
+
+						<!-- Dropdown level 1 -->
+						<div id="dropdown-user" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav navbar-nav">
+			                    <li><a href="{{ route('admin.users.index') }}"> All Users</a></li>
+								<li><a href="{{ route('admin.users.create') }}"> Add User</a></li>
+
+								</ul>
+							</div>
+						</div>
+					</li>
 					<li class="panel panel-default" id="dropdown">
 						<a data-toggle="collapse" href="#dropdown-post">
 							<span class="glyphicon glyphicon-bed"></span> Hotels <span class="caret"></span>

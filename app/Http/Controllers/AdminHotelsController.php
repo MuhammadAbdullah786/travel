@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Hotel;
 class AdminHotelsController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class AdminHotelsController extends Controller
      */
     public function index()
     {
-        return view('admin.hotels.index');
+        $hotels = Hotel::all();
+        return view('admin.hotels.index',compact('hotels'));
     }
 
     /**
@@ -34,7 +35,16 @@ class AdminHotelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+  
+        if($file = $request->file('image')){
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images/hotel/', $name);
+            $input['image'] =  $name;
+        }
+
+            Hotel::create($input);
+            return redirect('/admin/hotels');
     }
 
     /**
@@ -56,7 +66,8 @@ class AdminHotelsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hotel = Hotel::findOrFail($id);
+        return view('admin.hotels.edit', compact('hotel'));
     }
 
     /**
@@ -68,7 +79,17 @@ class AdminHotelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();  
+        $hotel = Hotel::findOrFail($id);
+
+        if($file = $request->file('image'))
+        {
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images/hotel/', $name);
+            $input['image'] = $name;        
+        }
+        $hotel->update($input);
+        return redirect('/admin/hotels');
     }
 
     /**
