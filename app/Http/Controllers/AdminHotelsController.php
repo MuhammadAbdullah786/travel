@@ -23,7 +23,7 @@ class AdminHotelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.hotels.create');
     }
 
     /**

@@ -3,9 +3,10 @@
 @section('content')
    <div class="panel-heading">Edit User</div>
     <div class="panel-body">
+    	@include('includes.form-error')
    	<div class="row">
    	<div class="col-sm-3">
-   		<img src="{{ $user->photo ? $user->photo->file : 'http://via.placeholder.com/400x400'}}" class="img-responsive img-rounded">
+   		<img src="{{ $user->photo ? $user->photo : 'http://via.placeholder.com/400x400'}}" class="img-responsive img-rounded">
    	</div>
    	<div class="col-sm-9">
    	
@@ -18,21 +19,42 @@
 		{!! Form::label('email', 'Email:') !!}
 		{!! Form::email('email', null, ['class' => 'form-control']) !!}
 	</div>
+	<div class="form-group">
+		{!! Form::label('contact_no', 'Contact No.:') !!}
+		{!! Form::text('contact_no', null, ['class' => 'form-control']) !!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('location', 'Location:') !!}
+		{!! Form::text('location', null, ['class' => 'form-control']) !!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('address', 'Address:') !!}
+		{!! Form::textarea('address', null, ['class' => 'form-control', 'size' => '30x3']) !!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('sex', 'Sex:') !!}
+		{!! Form::select('sex', array("Male" => 'Male', "Female" => 'Female'), null, ['class' => 'form-control']) !!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('bio', 'Bio:') !!}
+		{!! Form::textarea('bio', null, ['class' => 'form-control', 'size' => '30x3']) !!}
+	</div>
     <div class="form-group">
 		{!! Form::label('role_id', 'Role:') !!}
 		{!! Form::select('role_id', array('' => 'Select Type') + $roles, null, ['class' => 'form-control']) !!}
 	</div>
+	
 	<div class="form-group">
-		{!! Form::label('is_active', 'Status:') !!}
-		{!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), null, ['class' => 'form-control']) !!}
-	</div>
-	<div class="form-group">
-		{!! Form::label('photo_id', 'Upload Picture:') !!}
-		{!! Form::file('photo_id', null, ['class' => 'form-control']) !!}
+		{!! Form::label('photo', 'Upload Picture:') !!}
+		{!! Form::file('photo', null, ['class' => 'form-control']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::label('password', 'Password:') !!}
 		{!! Form::password('password', ['class' => 'form-control']) !!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('is_active', 'Status:') !!}
+		{!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 'null', ['class' => 'form-control']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::submit('Update User', ['class' => 'btn btn-primary col-sm-6']) !!}
@@ -44,7 +66,7 @@
 		{!! Form::submit('Delete User', ['class' => 'btn btn-danger col-sm-6']) !!}
 	</div>
 	{!! Form::close() !!}
-     @include('includes.form-error')
+     
     </div>
 
     </div>
