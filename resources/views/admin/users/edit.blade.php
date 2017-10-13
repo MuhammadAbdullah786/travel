@@ -1,8 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
-   <div class="panel-heading">Edit User</div>
-    <div class="panel-body">
+    <section class="content-header">
+      <h1>
+        Users
+        
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+        <li class="active">User</li>
+        <li class="active">Edit</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+<section class="content container-fluid">
     	@include('includes.form-error')
    	<div class="row">
    	<div class="col-sm-3">
@@ -70,6 +82,7 @@
     </div>
 
     </div>
-  </div>
+
+  </section>
 
 @endsection

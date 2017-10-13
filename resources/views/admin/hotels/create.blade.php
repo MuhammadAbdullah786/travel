@@ -2,7 +2,19 @@
 
 @section('content')
 
-   <div class="panel-heading">Add Hotel</div>
+    <section class="content-header">
+      <h1>
+        Hotels
+        
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Hotel</a></li>
+        <li class="active">Add New</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+<section class="content container-fluid">
    @include('includes.form-error')
     <div class="panel-body">
    	{!! Form::open(['method' => 'POST', 'action' => 'AdminHotelsController@store', 'files'=>true]) !!}
@@ -65,4 +77,5 @@
 
      
     </div>
+     </section>
 @endsection

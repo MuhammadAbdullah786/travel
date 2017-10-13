@@ -1,8 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
+    <section class="content-header">
+      <h1>
+        Hotels
+        
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+        <li class="active">Hotels</li>
+        <li class="active">Edit</li>
+      </ol>
+    </section>
 
-   <div class="panel-heading">Edit Hotel</div>
+    <!-- Main content -->
+<section class="content container-fluid">
    @include('includes.form-error')
     <div class="panel-body">
    	{!! Form::model($hotel, ['method' => 'PATCH', 'action' => ['AdminHotelsController@update', $hotel->id ], 'files'=>true]) !!}
@@ -65,4 +77,5 @@
 
      
     </div>
+    </section>
 @endsection

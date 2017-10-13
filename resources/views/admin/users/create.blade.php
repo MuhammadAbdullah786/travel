@@ -1,8 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
+    <section class="content-header">
+      <h1>
+        Users
+        
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+        <li class="active">Users</li>
+        <li class="active">Add New</li>
+      </ol>
+    </section>
 
-   <div class="panel-heading">Create User</div>
+    <!-- Main content -->
+<section class="content container-fluid">
    @include('includes.form-error')
     <div class="panel-body">
    	{!! Form::open(['method' => 'POST', 'action' => 'AdminUsersController@store', 'files'=>true]) !!}
@@ -58,4 +70,5 @@
 
      
     </div>
+    </section>
 @endsection

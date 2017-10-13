@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/bower_components
+/public/dist
 /public/storage
 /public/images
 /storage/*.key

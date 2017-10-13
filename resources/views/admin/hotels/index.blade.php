@@ -1,8 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
-   <div class="panel-heading">Hotels</div>
-    <div class="panel-body">
+    <section class="content-header">
+      <h1>
+        Hotels
+        
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+        <li class="active">Hotels</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+<section class="content container-fluid">
     @if(Session::has('deleted_hotel'))
     <p class="bg bg-danger">{{ session('deleted_hotel') }}</p>
     @endif
@@ -46,6 +57,6 @@
     </tbody>
   </table>
   @endif
-       </div>
+     </section>
 
 @endsection
