@@ -14,11 +14,12 @@
 
     <!-- Main content -->
 <section class="content container-fluid">
+  <div class="box-body">
   @if(Session::has('deleted_user'))
     <p class="bg bg-danger">{{ session('deleted_user') }}</p>
     @endif
     @if($users)
-   <table class="table">
+   <table id="example1" class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>Id</th>
@@ -48,8 +49,32 @@
       @endforeach
     </tbody>
   </table>
+</div>
   @endif
 
   </section>
 
+@endsection
+
+@section('scripts')
+<script src="{{ url('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<!-- SlimScroll -->
+<script src="{{ url('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+<!-- FastClick -->
+<script src="{{ url('bower_components/fastclick/lib/fastclick.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ url('dist/js/demo.js') }}"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    })
+  })
+</script>
 @endsection
