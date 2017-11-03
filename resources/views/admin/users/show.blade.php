@@ -3,13 +3,13 @@
 @section('content')
     <section class="content-header">
       <h1>
-        Users
+        User Details
         
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
         <li class="active">Users</li>
-        <li class="active">Add New</li>
+        <li class="active">Details</li>
       </ol>
     </section>
 
@@ -21,14 +21,14 @@
 	<div class="form-group">
 	<label for="inputName" class="col-sm-2 control-label">{!! Form::label('name', 'Name:') !!}</label>
 	<div class="col-sm-10">
-		{!! Form::text('name', null, ['class' => 'form-control']) !!}
+		{{ $user->name }}
 	</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmail" class="col-sm-2 control-label">
 		{!! Form::label('email', 'Email:') !!}</label>
 		<div class="col-sm-10"> 
-		{!! Form::email('email', null, ['class' => 'form-control']) !!}
+		{{ $user->email }}
 	</div>
 	</div>
 	<div class="form-group">
@@ -36,7 +36,7 @@
 		{!! Form::label('contact_no', 'Contact No.:') !!}
 		</label>
 		<div class="col-sm-10">
-		{!! Form::text('contact_no', null, ['class' => 'form-control']) !!}
+		{{ $user->profile->contact_no }}
 	</div>
 	</div>
 	<div class="form-group">
@@ -44,7 +44,7 @@
 		{!! Form::label('location', 'Location:') !!}
 		</label>
 	<div class="col-sm-10">
-		{!! Form::text('location', null, ['class' => 'form-control']) !!}
+		{{ $user->profile->location }}
 	</div>
 	</div>
 	<div class="form-group">
@@ -52,7 +52,7 @@
 		{!! Form::label('address', 'Address:') !!}
 				</label>
 	<div class="col-sm-10">
-		{!! Form::textarea('address', null, ['class' => 'form-control', 'size' => '30x3']) !!}
+		{{ $user->profile->address }}
 	</div>
 	</div>
 	<div class="form-group">
@@ -60,7 +60,7 @@
 		{!! Form::label('sex', 'Sex:') !!}
 	</label>
 	<div class="col-sm-10">
-		{!! Form::select('sex', array("Male" => 'Male', "Female" => 'Female'), "Male", ['class' => 'form-control']) !!}
+		{{ $user->profile->sex }}
 	</div>
 </div>
 	<div class="form-group">
@@ -68,7 +68,7 @@
 		{!! Form::label('bio', 'Bio:') !!}
 			</label>
 	<div class="col-sm-10">
-		{!! Form::textarea('bio', null, ['class' => 'form-control', 'size' => '30x3']) !!}
+		{{ $user->profile->bio }}
 	</div>
 </div>
     <div class="form-group">
@@ -76,38 +76,32 @@
 		{!! Form::label('role_id', 'Role:') !!}
 		</label>
 	<div class="col-sm-10">
-		{!! Form::select('role_id', array('' => 'Select Type') + $roles, null, ['class' => 'form-control']) !!}
+		{{ $user->role->name }}
 	</div>
 	</div>
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">
-		{!! Form::label('photo', 'Upload Picture:') !!}
+		{!! Form::label('photo', 'Picture:') !!}
 				</label>
 	<div class="col-sm-10">
-		{!! Form::file('photo', null, ['class' => 'form-control']) !!}
+		<img src="{{ $user->profile->photo}}" height="160" width="200">
 	</div>
 	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">
-		{!! Form::label('password', 'Password:') !!}
-	</label>
-	<div class="col-sm-10">
-		{!! Form::password('password', ['class' => 'form-control']) !!}
-	</div>
-	</div>
+	
 	<div class="form-group">
 		<label class="col-sm-2 control-label">
 		{!! Form::label('is_active', 'Status:') !!}
 		</label>
 	<div class="col-sm-10">
-		{!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class' => 'form-control']) !!}
+		{{ $user->is_active == '1' ? "Active" : "Deactive" }}
 	</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label"></label>
+		<label class="col-sm-2 control-label">
+			<a href="{{ route('admin.users.index') }}">{!! Form::button('Back', ['class' => 'btn btn-primary']) !!}</a></label>
 		<div class="col-sm-10">
-		{!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
+		{!! Form::submit('Delete User', ['class' => 'btn btn-danger']) !!}
 	</div>
 	</div>
      {!! Form::close() !!}

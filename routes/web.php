@@ -27,6 +27,8 @@ Route::group(['middleware' => 'admin'], function(){
 Route::get('admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 Route::resource('admin/hotels', 'AdminHotelsController',["as"=>"admin"]);
 Route::resource('admin/users', 'AdminUsersController', ["as"=>"admin"]);
+Route::get('admin/users/{user}/delete', 'AdminUsersController@delete')->name('admin.users.delete');;
+Route::delete('users/deleteUsers', 'AdminUsersController@deleteUsers');
 });
 
 Route::group(['middleware' => 'agent'], function(){

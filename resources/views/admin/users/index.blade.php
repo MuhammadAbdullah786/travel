@@ -19,9 +19,12 @@
     <p class="bg bg-danger">{{ session('deleted_user') }}</p>
     @endif
     @if($users)
+    <form method="post" action="/users/deleteUsers">
+    <p><input type="submit" name="submit" value="Delete All"></p>
    <table id="example1" class="table table-bordered table-striped">
     <thead>
       <tr>
+        <th><input type="checkbox" id="checkAll"/></th>
         <th>Id</th>
         <th>Photo</th>
         <th>Name</th>
@@ -36,20 +39,23 @@
     <tbody>
       @foreach($users as $user)
       <tr>
+        <td><input type="checkbox" name="checkbox[]" data-id="checkbox" class="cb" value="{{$user->id}}" /> </td>
         <td>{{ $user->id }}</td>
-        <td><img height="60" src="{{ $user->photo ? $user->photo : 'http://via.placeholder.com/450X450' }}"></td>
-        <td><a href="{{ route('admin.users.edit', $user->id) }}">{{ $user->name }}</a></td>
+        <td><img height="60" src="{{ $user->profile->photo ? $user->profile->photo : 'http://via.placeholder.com/450X450' }}"></td>
+        <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
         <td>{{ $user->role->name }}</td>
         <td>{{ $user->is_active == 1 ? "Active" : "Not Active" }}</td>
         <td>{{ $user->created_at->diffForHumans() }}</td>
         <td>{{ $user->updated_at->diffForHumans() }}</td>
-        <td> <a href="#">view profile</a> | <a href="#">delete</a></td>
+        <td> <a href="{{ route('admin.users.edit', $user->id) }}">Edit</a> | <a href="{{ route('admin.users.show', $user->id) }}">View profile</a> | 
+          <a href="{{ route('admin.users.delete', $user->id) }}" onclick="confirm('Do you want to delete?');">Delete</a></td>
       </tr>
       @endforeach
     </tbody>
   </table>
 </div>
+</form>
   @endif
 
   </section>
@@ -72,9 +78,14 @@
       'lengthChange': true,
       'searching'   : true,
       'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true
+      'info'        : false,
+      'autoWidth'   : false
     })
   })
+</script>
+<script type="text/javascript">
+  $("#checkAll").change(function () {
+    $("input:checkbox").prop('checked', $(this).prop("checked"));
+});
 </script>
 @endsection
